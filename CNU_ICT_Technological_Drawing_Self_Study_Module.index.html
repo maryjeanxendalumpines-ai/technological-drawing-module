@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT – Technological Drawing | CNU BTVTE</title>
+<style>
+:root{
+  --primary:#3157d5; --secondary:#7c3aed; --accent:#06b6d4;
+  --bg:#f4f7ff; --card:#fff; --text:#172033; --muted:#5f6b85;
+  --success:#16834b; --danger:#c0392b; --gold:#f2b134;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eef3ff,#f8f0ff);color:var(--text)}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:28px 18px;text-align:center;box-shadow:0 5px 20px #0002}
+header h1{margin:0 0 8px;font-size:clamp(26px,5vw,44px)}
+header p{margin:5px;font-size:16px}
+.container{max-width:1050px;margin:auto;padding:20px}
+.progress{height:10px;background:#dce3f8;border-radius:20px;overflow:hidden;margin:12px 0 20px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--accent),var(--secondary));width:0%;transition:.3s}
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+button{border:0;border-radius:12px;padding:11px 16px;font-weight:bold;cursor:pointer;background:var(--primary);color:white;transition:.2s}
+button:hover{transform:translateY(-1px);filter:brightness(1.06)}
+button.secondary{background:#e8edff;color:#24356f}
+button.success{background:var(--success)}
+button.warning{background:var(--gold);color:#392800}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.page{display:none}.page.active{display:block}
+.card{background:var(--card);border-radius:20px;padding:24px;margin:15px 0;box-shadow:0 8px 25px #25345a18}
+.cover{text-align:center;padding:45px 25px;background:linear-gradient(135deg,#ffffff,#eef5ff)}
+.badge{display:inline-block;background:#e5ecff;color:#2944a5;padding:7px 13px;border-radius:30px;font-weight:bold;font-size:13px}
+.cover .icon{font-size:70px}
+.cover h2{font-size:32px;margin:12px 0;color:#2e43a5}
+input,select{width:100%;padding:13px;border:2px solid #d9def0;border-radius:10px;font-size:16px;margin:7px 0 14px}
+label{font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.topic{padding:18px;border-radius:16px;background:#f3f6ff;border-left:5px solid var(--primary)}
+.topic h3{margin-top:0}
+.check{background:#fff8e7;border:2px solid #f3d27c;border-radius:15px;padding:18px;margin-top:18px}
+.option{display:block;background:#f4f6fb;border:2px solid #e0e5f2;border-radius:10px;padding:11px;margin:8px 0;cursor:pointer}
+.option:hover{background:#edf1ff}
+.result{padding:15px;border-radius:12px;margin-top:12px;font-weight:bold}
+.correct{background:#e8f8ef;color:#146b40}.wrong{background:#fff0ee;color:#9b2f25}
+.quiz-q{border:1px solid #e0e4ef;border-radius:15px;padding:18px;margin:15px 0}
+.quiz-q h3{margin-top:0}
+.scorebox{text-align:center;background:linear-gradient(135deg,#edf4ff,#f7edff);padding:25px;border-radius:20px}
+.score{font-size:48px;font-weight:900;color:var(--primary)}
+.certificate{background:white;border:12px double #3157d5;padding:42px;text-align:center;max-width:850px;margin:20px auto;box-shadow:0 8px 30px #0002}
+.certificate .seal{font-size:55px}
+.certificate h1{font-family:Georgia,serif;color:#2745ad;font-size:38px;margin:8px}
+.certificate h2{font-family:Georgia,serif;color:#333;font-size:25px}
+.certificate .line{width:70%;border-bottom:2px solid #333;margin:20px auto 8px}
+.small{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media print{
+ body{background:white}.no-print,header,.nav,.progress,footer{display:none!important}
+ .page{display:none}.page.active{display:block!important}
+ .certificate{box-shadow:none;margin:0;max-width:none;min-height:90vh}
+}
+</style>
+</head>
+<body>
+<header class="no-print">
+  <h1>ICT – TECHNOLOGICAL DRAWING</h1>
+  <p>Cebu Normal University • Bachelor of Technology and Livelihood Education</p>
+  <p>Interactive Self-Study Module</p>
+</header>
+
+<div class="container">
+<div class="progress no-print"><div id="bar"></div></div>
+<div class="nav no-print" id="nav">
+  <button onclick="go(0)">🏠 Cover</button>
+  <button onclick="go(1)">🎯 Objectives</button>
+  <button onclick="go(2)">📐 Lesson 1</button>
+  <button onclick="go(3)">🧰 Lesson 2</button>
+  <button onclick="go(4)">💻 Lesson 3</button>
+  <button onclick="go(5)">⚡ Quick Check</button>
+  <button onclick="go(6)">📝 Final Quiz</button>
+  <button onclick="go(7)">🏆 Certificate</button>
+</div>
+
+<section class="page active" id="p0">
+ <div class="card cover">
+  <div class="icon">📐💻</div>
+  <span class="badge">ICT • BTVTE</span>
+  <h2>Technological Drawing</h2>
+  <p><b>Interactive Self-Study Module</b></p>
+  <p>Cebu Normal University</p>
+  <p>Bachelor of Technology and Livelihood Education</p>
+  <hr>
+  <div class="grid" style="text-align:left">
+   <div><label>Student Name</label><input id="studentName" placeholder="Enter your complete name"></div>
+   <div><label>Section</label><input id="studentSection" placeholder="Enter your section"></div>
+  </div>
+  <p class="small">Your name and section will appear on the certificate.</p>
+  <button onclick="go(1)">Start Module →</button>
+ </div>
+</section>
+
+<section class="page" id="p1">
+ <div class="card">
+  <span class="badge">LEARNING GUIDE</span>
+  <h2>🎯 Content Standard</h2>
+  <p>The learner demonstrates understanding of the principles, conventions, tools, symbols, and ICT-based processes used in technological drawing and technical communication.</p>
+  <h2>📚 Learning Competencies</h2>
+  <div class="grid">
+   <div class="topic"><h3>1. Identify</h3><p>Identify common drawing tools, materials, lines, symbols, and conventions.</p></div>
+   <div class="topic"><h3>2. Explain</h3><p>Explain the purpose of scale, dimensions, views, and drawing standards.</p></div>
+   <div class="topic"><h3>3. Apply</h3><p>Apply basic principles of accurate and organized technological drawing.</p></div>
+   <div class="topic"><h3>4. Use ICT</h3><p>Describe how CAD and other digital tools support technical drawing.</p></div>
+  </div>
+  <h2>🗺️ How to Use</h2>
+  <p>Move through the lessons using the buttons. Answer the quick check after the discussion. Complete all final-quiz items before submitting. Your score and answer review will appear only after submission.</p>
+  <button onclick="go(2)">Continue →</button>
+ </div>
+</section>
+
+<section class="page" id="p2">
+ <div class="card">
+  <span class="badge">LESSON 1</span>
+  <h2>📐 Foundations of Technological Drawing</h2>
+  <div class="topic"><h3>What is technological drawing?</h3><p>Technological drawing is a visual language used to communicate the shape, size, structure, and specifications of an object or project accurately. It is used in fields such as engineering, architecture, manufacturing, electronics, and technical-vocational education.</p></div>
+  <div class="grid">
+   <div class="topic"><h3>📏 Lines</h3><p>Different line types communicate different information. Object lines show visible edges; hidden lines show features that cannot be directly seen; center lines indicate centers or axes; dimension lines communicate measurements.</p></div>
+   <div class="topic"><h3>📊 Scale</h3><p>Scale represents the relationship between the drawing size and the actual size. A drawing may be full-size, reduced, or enlarged depending on the purpose.</p></div>
+   <div class="topic"><h3>🔢 Dimensions</h3><p>Dimensions communicate measurements such as length, width, height, diameter, and angles. They should be clear, accurate, and consistently placed.</p></div>
+   <div class="topic"><h3>👀 Views</h3><p>Orthographic views commonly represent an object from different directions, such as front, top, and side views.</p></div>
+  </div>
+  <div class="check">
+   <b>⚡ Quick Check</b><p>Which drawing feature communicates the measurement of an object?</p>
+   <label class="option"><input type="radio" name="qc1" value="a"> Line weight</label>
+   <label class="option"><input type="radio" name="qc1" value="b"> Dimension</label>
+   <label class="option"><input type="radio" name="qc1" value="c"> Title block color</label>
+   <button onclick="quick(1,'b')">Check Answer</button><div id="qr1"></div>
+  </div>
+  <button onclick="go(3)">Next Lesson →</button>
+ </div>
+</section>
+
+<section class="page" id="p3">
+ <div class="card">
+  <span class="badge">LESSON 2</span>
+  <h2>🧰 Drawing Tools, Materials & Conventions</h2>
+  <div class="grid">
+   <div class="topic"><h3>📏 T-square</h3><p>Used to draw accurate horizontal lines and to guide triangles.</p></div>
+   <div class="topic"><h3>🔺 Triangles</h3><p>Used with a T-square to create standard vertical and angled lines.</p></div>
+   <div class="topic"><h3>🧭 Compass</h3><p>Used to draw circles and arcs with controlled radius.</p></div>
+   <div class="topic"><h3>✏️ Pencils</h3><p>Technical pencils or lead grades are selected according to the required line quality and drafting task.</p></div>
+   <div class="topic"><h3>📐 Ruler/Scale</h3><p>Used to measure and construct lines according to a required size or scale.</p></div>
+   <div class="topic"><h3>🧹 Eraser</h3><p>Used to remove construction marks while keeping the drawing clean.</p></div>
+  </div>
+  <h3>Good Drafting Practices</h3>
+  <ul>
+   <li>Keep tools clean and properly stored.</li>
+   <li>Use consistent line quality and accurate measurements.</li>
+   <li>Write labels and dimensions clearly.</li>
+   <li>Maintain a clean drawing sheet and organized layout.</li>
+   <li>Follow the required drawing standards and conventions.</li>
+  </ul>
+  <div class="check">
+   <b>⚡ Quick Check</b><p>Which tool is commonly used to draw circles and arcs?</p>
+   <label class="option"><input type="radio" name="qc2" value="a"> Compass</label>
+   <label class="option"><input type="radio" name="qc2" value="b"> T-square</label>
+   <label class="option"><input type="radio" name="qc2" value="c"> Eraser</label>
+   <button onclick="quick(2,'a')">Check Answer</button><div id="qr2"></div>
+  </div>
+  <button onclick="go(4)">Next Lesson →</button>
+ </div>
+</section>
+
+<section class="page" id="p4">
+ <div class="card">
+  <span class="badge">LESSON 3</span>
+  <h2>💻 ICT and Technological Drawing</h2>
+  <div class="topic"><h3>Computer-Aided Design (CAD)</h3><p>CAD refers to using computer software to create, modify, analyze, and document technical drawings or designs. Compared with manual drafting, CAD can make editing, duplication, measurement, and organization more efficient.</p></div>
+  <div class="grid">
+   <div class="topic"><h3>🖱️ Precision</h3><p>Digital drawing tools can help users create accurate geometry, align objects, and enter exact dimensions.</p></div>
+   <div class="topic"><h3>🔄 Editing</h3><p>Digital objects can be moved, copied, resized, or revised without redrawing the entire sheet.</p></div>
+   <div class="topic"><h3>🗂️ Organization</h3><p>Layers, files, and drawing templates can help organize complex technical drawings.</p></div>
+   <div class="topic"><h3>📤 Output</h3><p>Completed drawings can be saved, printed, exported, and shared in appropriate digital formats.</p></div>
+  </div>
+  <h3>Manual Drafting vs. CAD</h3>
+  <table style="width:100%;border-collapse:collapse">
+   <tr><th style="padding:10px;border-bottom:2px solid #ddd;text-align:left">Manual Drafting</th><th style="padding:10px;border-bottom:2px solid #ddd;text-align:left">CAD</th></tr>
+   <tr><td style="padding:10px">Uses physical tools and drawing sheets</td><td style="padding:10px">Uses computer hardware and software</td></tr>
+   <tr><td style="padding:10px">Corrections may require erasing/redrawing</td><td style="padding:10px">Edits can be made digitally</td></tr>
+   <tr><td style="padding:10px">Physical storage</td><td style="padding:10px">Digital file storage and sharing</td></tr>
+  </table>
+  <div class="check">
+   <b>⚡ Quick Check</b><p>What does CAD mainly provide in technological drawing?</p>
+   <label class="option"><input type="radio" name="qc3" value="a"> A way to avoid measurements</label>
+   <label class="option"><input type="radio" name="qc3" value="b"> Computer-assisted design and drafting</label>
+   <label class="option"><input type="radio" name="qc3" value="c"> A replacement for all technical standards</label>
+   <button onclick="quick(3,'b')">Check Answer</button><div id="qr3"></div>
+  </div>
+  <button onclick="go(5)">Go to Quick Check →</button>
+ </div>
+</section>
+
+<section class="page" id="p5">
+ <div class="card">
+  <span class="badge">REVIEW</span>
+  <h2>⚡ Quick Check Challenge</h2>
+  <p>Answer these review questions before taking the final quiz.</p>
+  <div class="check"><b>1.</b> What is the purpose of a technical drawing?</div>
+  <p>To communicate an object's shape, size, structure, and specifications accurately.</p>
+  <div class="check"><b>2.</b> Why are drawing conventions important?</div>
+  <p>They provide a consistent visual language so drawings can be understood correctly.</p>
+  <div class="check"><b>3.</b> Why is ICT useful in technological drawing?</div>
+  <p>It can improve precision, editing, organization, storage, and sharing of digital designs.</p>
+  <button onclick="go(6)">Take Final Quiz →</button>
+ </div>
+</section>
+
+<section class="page" id="p6">
+ <div class="card">
+  <span class="badge">FINAL ASSESSMENT</span>
+  <h2>📝 Technological Drawing Quiz</h2>
+  <p><b>Important:</b> Answer every item and click Submit Quiz. The answer key and score will not be shown until all items are answered and submitted.</p>
+  <div id="quiz"></div>
+  <button class="success" id="submitQuiz" onclick="submitQuiz()">Submit Quiz</button>
+  <div id="quizResult"></div>
+ </div>
+</section>
+
+<section class="page" id="p7">
+ <div class="card no-print">
+  <span class="badge">CERTIFICATE</span>
+  <h2>🏆 Certificate of Completion</h2>
+  <p>Complete and submit the final quiz to unlock your certificate.</p>
+  <button id="certBtn" class="success" onclick="showCert()" disabled>Generate Certificate</button>
+  <button class="secondary" onclick="window.print()">🖨️ Print Certificate</button>
+ </div>
+ <div class="certificate" id="certificate">
+  <div class="seal">🏆</div>
+  <p><b>CEBU NORMAL UNIVERSITY</b></p>
+  <p>Bachelor of Technology and Livelihood Education</p>
+  <h1>CERTIFICATE OF COMPLETION</h1>
+  <p>This certificate is proudly presented to</p>
+  <h2 id="certName">Student Name</h2>
+  <div class="line"></div>
+  <p>for successfully completing the interactive self-study module</p>
+  <h2>ICT – Technological Drawing</h2>
+  <p id="certDetails"><b>Section:</b> —</p>
+  <p id="certScore"><b>Score:</b> — &nbsp; | &nbsp; <b>Percentage:</b> —</p>
+  <p><b>Congratulations!</b> Your effort, participation, and commitment to learning are commendable. Keep developing your technical and ICT skills!</p>
+  <p class="small" id="certDate"></p>
+ </div>
+</section>
+
+<footer class="no-print">ICT – Technological Drawing • CNU BTVTE • Interactive Self-Study Module</footer>
+</div>
+
+<script>
+const pages=[...document.querySelectorAll('.page')];
+let current=0, quizDone=false, finalScore=0;
+const questions=[
+ ["What is the main purpose of technological drawing?","To communicate technical information accurately","To decorate objects","To replace all measurements","To create advertisements",1],
+ ["Which line type is commonly used to show visible edges?","Hidden line","Object line","Center line","Dimension line",2],
+ ["What is scale used for?","Showing the relationship between drawing size and actual size","Choosing pencil color","Erasing lines","Naming the drawing",1],
+ ["Which tool is commonly used with a T-square to draw vertical or angled lines?","Compass","Triangle","Eraser","Protractor only",2],
+ ["Which tool is used to draw circles and arcs?","Compass","T-square","Ruler","Drawing board",1],
+ ["What do dimensions communicate?","The author's name","Measurements of features","Paper color","File size",2],
+ ["What is CAD?","Computer-Aided Design","Color Arrangement Drawing","Computer Art Decoration","Construction Analysis Document",1],
+ ["Which is an advantage of CAD?","It prevents editing","It can make revisions more efficient","It removes the need for standards","It makes measurements unnecessary",2],
+ ["Why are drawing conventions important?","They create a consistent technical visual language","They make drawings less accurate","They eliminate dimensions","They are only for decoration",1],
+ ["Which is a good drafting practice?","Keep tools and drawing sheets organized and clean","Ignore measurements","Use random symbols","Avoid labels",1]
+];
+function go(n){
+ current=n; pages.forEach((p,i)=>p.classList.toggle('active',i===n));
+ document.getElementById('bar').style.width=((n)/(pages.length-1)*100)+'%';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function quick(n,correct){
+ const sel=document.querySelector('input[name="qc'+n+'"]:checked'), out=document.getElementById('qr'+n);
+ if(!sel){out.className='result wrong';out.textContent='Please select an answer first.';return}
+ if(sel.value===correct){out.className='result correct';out.textContent='✓ Correct! Great job.'}
+ else{out.className='result wrong';out.textContent='✗ Not quite. Review the lesson and try again.'}
+}
+function renderQuiz(){
+ const q=document.getElementById('quiz');
+ q.innerHTML=questions.map((x,i)=>`
+ <div class="quiz-q"><h3>${i+1}. ${x[0]}</h3>
+ ${[1,2,3,4].map(j=>`<label class="option"><input type="radio" name="q${i}" value="${j}"> ${String.fromCharCode(64+j)}. ${x[j]}</label>`).join('')}
+ </div>`).join('');
+}
+function submitQuiz(){
+ if(quizDone)return;
+ const unanswered=questions.findIndex((_,i)=>!document.querySelector('input[name="q'+i+'"]:checked));
+ if(unanswered!==-1){
+   alert('Please answer all '+questions.length+' items before submitting. Item '+(unanswered+1)+' is unanswered.');
+   document.querySelector('input[name="q'+unanswered+'"]').closest('.quiz-q').scrollIntoView({behavior:'smooth'});
+   return;
+ }
+ finalScore=0;
+ questions.forEach((x,i)=>{if(Number(document.querySelector('input[name="q'+i+'"]:checked').value)===x[5])finalScore++});
+ quizDone=true;
+ document.getElementById('submitQuiz').disabled=true;
+ const pct=Math.round(finalScore/questions.length*100);
+ let html=`<div class="scorebox"><div class="score">${finalScore}/${questions.length}</div><h2>${pct}%</h2><p>${pct>=90?'Excellent work!':pct>=75?'Good job! Keep improving!':'Keep studying and try your best next time!'}</p></div>`;
+ html+=questions.map((x,i)=>{
+  const chosen=Number(document.querySelector('input[name="q'+i+'"]:checked').value);
+  const ok=chosen===x[5];
+  return `<div class="result ${ok?'correct':'wrong'}">${i+1}. ${ok?'✓ Correct':'✗ Incorrect'} — Correct answer: <b>${String.fromCharCode(64+x[5])}. ${x[x[5]]}</b></div>`;
+ }).join('');
+ document.getElementById('quizResult').innerHTML=html;
+ document.getElementById('certBtn').disabled=false;
+}
+function showCert(){
+ if(!quizDone)return;
+ const name=document.getElementById('studentName').value.trim()||'Student';
+ const section=document.getElementById('studentSection').value.trim()||'Not specified';
+ const pct=Math.round(finalScore/questions.length*100);
+ document.getElementById('certName').textContent=name;
+ document.getElementById('certDetails').innerHTML='<b>Section:</b> '+section;
+ document.getElementById('certScore').innerHTML='<b>Score:</b> '+finalScore+'/'+questions.length+' &nbsp; | &nbsp; <b>Percentage:</b> '+pct+'%';
+ document.getElementById('certDate').textContent='Completed on '+new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+ go(7);
+}
+renderQuiz();
+</script>
+</body>
+</html>
